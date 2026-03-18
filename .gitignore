@@ -8,7 +8,7 @@ sellbienv/
 # Django
 db.sqlite3
 media/
-static/
+img/
 staticfiles/
 local_settings.py
 

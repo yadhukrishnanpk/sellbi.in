@@ -1,0 +1,48 @@
+/* products.css - Derived from style2.css */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Exactly 6 columns */
+  gap: 20px;
+  padding: 40px;
+}
+
+.product-card {
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid #444;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  width: max-content;
+  height: min-content;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+.product-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+button {
+  background: transparent;
+  border: 1px solid #777;
+  color: white;
+  padding: 8px 20px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 50px;
+}
+
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

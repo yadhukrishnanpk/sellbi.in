@@ -9,7 +9,7 @@ sellbienv/
 # Django
 db.sqlite3
 media/
-img/
+**/img/.
 staticfiles/
 local_settings.py
 
