@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Site</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<body>
+    <div class="nav-bar" >
+        <div class="nav-container">
+           <div class="logo" style= "font-family: Yesteryear, cursive">
+            <i class="fa-solid fa-laugh"></i>Sell.bi
+           </div>
+           <div class="list">
+            <a href="{% url 'login'%}"><li >HOME</li></a>
+            <a href="#about"><li >ABOUT</li></a>
+            <a href="#contact"><li >CONTACT</li></a>
+           </div>
+        </div>
+    </div>
+   
+
+    <div class="main-container-7">
+        <div class="left">
+            <h2>WELCOME TO Sellbi.in</h2><br>
+            <p>At Sellbi.in, we believe no great idea should go unnoticed. We’ve built a space for makers to showcase their craft, share their stories, and sell their unique products—whether it’s a canvas painting or a homemade treasure.</p><br>
+            <a href="{% url 'products' %}" ><button type="button" class="btn" style= "font-family: Henny Penny, system-ui">E X P L O R E</button></a><br>
+        </div>
+         {% block content %}
+        <div class="right">
+    <form method="post">
+            {% csrf_token %}
+         
+        <fieldset>
+            
+            <legend>LOGIN</legend> <br>
+            <div class="upper">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required /><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            </div><br>
+            <div class="under"><br>
+            <input type="submit" value="SUBMIT" /><br><br>
+            <h4>You Don't have account ?         <a style="text-decoration: none; color: white"  href="{% url 'signup' %}">Signup</a></h4>
+            </div>
+            </fieldset>
+            
+    </form>
+</div>
+{% endblock %}
+</div>
+    
+
+<div class="main-container-1" id="about"  >
+  <h1>About Us</h1>
+  <p>Welcome to our website! We are dedicated to providing the best information and services.</p><br><br>
+  <div class="team-cards">
+<div class="card" >
+  <img src="{% static 'img\annie-spratt-TywjkDHf0Ps-unsplash.jpg' %}" alt="Avatar" style="width:100%">
+</div>
+<div class="card">
+  <img src="{% static '\img\devn-V7T7_A0FIIY-unsplash.jpg' %}" alt="Avatar" style="width:100%">
+</div>
+<div class="card">
+  <img src="{% static '\img\nick-karvounis-XcLQN-2R9CM-unsplash.jpg' %}" alt="Avatar" style="width:100%"><br><br>
+  
+</div>
+</div>
+</div>
+
+<div class="main-container-4" id="contact">
+    <h1>Contact Information</h1>
+    <p>Feel free to reach out to us through any of the following channels.</p>
+    
+    <div class="contact-details">
+        <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email: support@sell.bi</span>
+        </div>
+        <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>Phone: +91 9876543210</span>
+        </div>
+        <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Address: kasaragod, kerala</span>
+        </div>
+        
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

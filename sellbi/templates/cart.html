@@ -1,0 +1,137 @@
+{% load static %}
+{% load multiply %}
+{% load gettotal %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sellbi.in</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+<body>
+    <div class="nav-bar" >
+        <div class="nav-container">
+           <div class="logo" style= "font-family: Yesteryear, cursive">
+            <i class="fa-solid fa-laugh"></i>Sell.bi
+           </div>
+           <div class="list">
+            <a href="#about"><li >ABOUT</li></a>
+            <a href="#contact"><li >CONTACT</li></a>
+            <a href="{% url 'logout'%}"><li >LOGOUT</li></a>
+           </div>
+        </div>
+    </div>
+    </div>
+
+
+   <div class="container-5">
+    <div class="cart">
+      <h2>Shopping Cart</h2><br>
+    <table>
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Discription</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Subtotal</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+             {% if items %}
+        {% for item in items %}
+            <tr>
+                {% if item.product.image %}
+                <td><img src="{{ item.product.image.url }}" style="width: 50px; height: 50px; max-height: 100px; border-radius:10px;" alt="product image" /></td>
+                 {% endif %}
+                <td>{{ item.product.title }}</td>
+                <td>&#8377;{{ item.product.price }}</td>
+                <td><span class="badge bg-dark px-3 py-3">{{ item.quantity }}</span></td>
+                <td>{% multiply item.product.price item.quantity %}</td>
+                <td><a href="{% url 'remove_item' item.id %}"><button>Remove</button></a></td>
+          
+           </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+    <div class="footer">
+        <h1 id="total">TOTAL : ₹{% gettotal cart|default:".00" %}</h1><br>
+         <form method="post" action="{% url 'checkout' %}" >
+            {% csrf_token %}
+        <input type="hidden" name="total" value="{% gettotal cart %}"> 
+        <button type="submit" id="button">CHECKOUT</button><br>
+         </form>
+         <a href="{% url 'products' %}" class="btn btn-primary mt-3" style="text-decoration:none; color:white;">&#8592; Back to Products</a>
+    </div>
+      {% else %}
+    <div class="footer">
+        <h2>Your cart is empty</h2> 
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+    </div>
+        {% endfor %}
+        {% endif %}
+    <a href="{% url 'products' %}" class="btn btn-primary mt-3" style="text-decoration:none; color:white;">&#8592; Back to Products</a>
+        {% endif %}
+    </div>
+    </div>
+</div>
+    
+
+
+<div class="main-container-1" id="about"  >
+  <h1>About Us</h1>
+  <p>At Sellbi.in, we believe no great idea should go unnoticed. We have built a dedicated space for makers and creators to showcase their craft, share their unique stories, and sell their products to the world.
+
+Whether it is a hand-painted canvas, a homemade treasure, or an innovative craft project, our platform is designed to help people express their ideas and showcase their hard work. We are committed to providing the best information and services to our community of creators.</p>
+  <div class="team-cards">
+<div class="card" >
+  <img src="{% static 'img\annie-spratt-TywjkDHf0Ps-unsplash.jpg' %}" alt="Avatar" style="width:100%">
+</div>
+<div class="card">
+  <img src="{% static '\img\devn-V7T7_A0FIIY-unsplash.jpg' %}" alt="Avatar" style="width:100%">
+</div>
+<div class="card">
+  <img src="{% static '\img\nick-karvounis-XcLQN-2R9CM-unsplash.jpg' %}" alt="Avatar" style="width:100%"><br><br>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="main-container-4" id="contact">
+    <h1>Contact Information</h1>
+    <p>Feel free to reach out to us through any of the following channels.</p>
+    
+<div class="contact-details">
+        <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email: support@sell.bi</span>
+        </div>
+        <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>Phone: +91 9876543210</span>
+        </div>
+        <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Address: kasaragod, kerala</span>
+        </div>
+        
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+</div>
+  
+</body>
+</html>

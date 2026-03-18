@@ -1,0 +1,19 @@
+{% extends 'main.html' %} {% block content %}
+
+
+
+<div class="main">
+  <div class="product-grid">
+    {% for product_data in products %}
+    <div class="product-card">
+      {% if product_data.image %}
+      <img src="{{ product_data.image.url }}" alt="{{ product_data.title }}" />
+      {% endif %}
+      <h2>{{ product_data.title }}</h2>
+      <h3>&#8377; {{ product_data.price }}</h3>
+      <a href="{% url 'product_details' product_data.id %}" ><button type="button">BUY</button></a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

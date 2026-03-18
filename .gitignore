@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+sellbienv/
+.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+
+# Editor settings
+.vscode/
+.idea/
+
+# System
+.DS_Store
